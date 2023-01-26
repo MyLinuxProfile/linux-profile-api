@@ -1,0 +1,19 @@
+service: aws-linuxprofile-api
+
+frameworkVersion: '3'
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: python3.9
+
+functions:
+  app:
+    handler: app.main.handler
+    events:
+      - httpApi: '*'
+
+plugins:
+  - serverless-python-requirements

@@ -1,0 +1,10 @@
+{
+    "name": "aws-linuxprofile-api",
+    "version": "0.0.1",
+    "description": "Linux Profile Project API",
+    "author": "Fernando Celmer",
+    "license": "MIT",
+    "devDependencies": {
+        "serverless-python-requirements": "^6.0.0"
+    }
+}
