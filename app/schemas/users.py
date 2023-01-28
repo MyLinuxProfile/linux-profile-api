@@ -17,7 +17,7 @@ class SchemaPut(SchemaBase):
 
 
 class Schema(SchemaBase):
-    id: int
+    id: str
 
     class Config:
         orm_mode = True
