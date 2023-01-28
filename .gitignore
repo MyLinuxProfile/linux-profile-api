@@ -131,3 +131,10 @@ node_modules
 
 # Database
 *.db
+
+# Serverless
+*requirements
+*.zip
+.serverless/cloudformation-template-update-stack.json
+.serverless/requirements.txt
+.serverless/serverless-state.json
