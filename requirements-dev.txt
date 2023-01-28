@@ -1,2 +1,4 @@
+mkdocs==1.4.2
+mkdocs-material==8.5.11
 python-dotenv==0.21.1
 -r requirements.txt
