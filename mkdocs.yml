@@ -1,0 +1,23 @@
+site_name: LinuxProfile API
+site_url: http://linuxprofile.com
+repo_name: MyLinuxProfile/linux-profile-api
+repo_url: https://github.com/MyLinuxProfile/linux-profile-api
+
+nav:
+    - Home: index.md
+    - Release Notes: nav/release-notes.md
+
+theme: 
+    name: material
+    logo: assets/linux-profile-icon.png
+    favicon: assets/linux-profile-icon.ico
+    features:
+        - navigation.top
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github 
+      link: https://github.com/MyLinuxProfile
