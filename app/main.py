@@ -1,14 +1,17 @@
 from fastapi import FastAPI
 from mangum import Mangum
-from app.api.routers import v1
+
+from app import __version__
+from app.api.auth import auth
+from app.api.v1.routers import v1
 
 
 app = FastAPI(
-        title="LinuxProfile API",
-        description="Linux Profile Project API",
-        version="0.0.1"
-    )
+    title="LinuxProfile API",
+    description="Linux Profile Project API",
+    version=__version__)
 
+app.include_router(auth, prefix="/auth", tags=["Auth"])
 app.include_router(v1, prefix="/v1")
 
 
