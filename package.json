@@ -5,6 +5,6 @@
     "author": "Fernando Celmer",
     "license": "MIT",
     "devDependencies": {
-        "serverless-python-requirements": "^6.0.0"
+        "serverless-python-requirements": "^5.1.0"
     }
 }
