@@ -1,10 +1,13 @@
 from uuid import uuid4
 from datetime import datetime
-from sqlalchemy import Column, String, DateTime, Boolean
-from app.core.database import Base, engine
+from sqlalchemy import Boolean, Column, DateTime, String
+from app.core.database.mysql import Base, engine
 
 
 class Users(Base):
+    """Model Users
+    """
+
     __tablename__ = "users"
     __table_args__ = {'extend_existing': True}
 

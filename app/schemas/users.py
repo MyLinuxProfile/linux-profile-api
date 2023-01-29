@@ -11,7 +11,7 @@ class SchemaCreate(SchemaBase):
     pass
 
 
-class SchemaPut(SchemaBase):
+class SchemaUpdate(SchemaBase):
     username: Optional[str] = None
     password: Optional[str] = None
 
