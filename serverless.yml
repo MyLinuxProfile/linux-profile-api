@@ -17,3 +17,12 @@ functions:
 
 plugins:
   - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: false
+    layer:
+      name: FastAPI-Lambda-Function
+      description: FastAPI-Lambda-Function API Layer
+      compatibleRuntimes:
+        - python3.9
