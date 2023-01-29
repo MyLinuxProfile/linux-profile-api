@@ -19,6 +19,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - uses: actions/setup-node@v3
     - name: Serverless AWS Deploy
       run: |
         serverless config credentials -p aws -k ${{ secrets.AWS_ACCESS_KEY_ID }} -s ${{ secrets.AWS_SECRET_ACCESS_KEY }} -n linuxprofile
