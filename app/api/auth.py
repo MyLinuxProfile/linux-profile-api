@@ -1,21 +1,19 @@
 from fastapi import APIRouter, HTTPException, Depends, Security
-from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from fastapi.security import HTTPAuthorizationCredentials
+from sqlalchemy.orm import Session
 
-from app.core.auth import Auth
 from app.core.controller import ControllerUsers
 from app.schemas.users import SchemaCreate
 
-from sqlalchemy.orm import Session
-from app.core.database import get_db
+from app.core.database.mysql import get_mysql
+from app.core.security import security, auth_handler
 
 
-auth = APIRouter()
-security = HTTPBearer()
-auth_handler = Auth()
+auth = APIRouter(tags=["Auth"])
 
 
 @auth.post('/signup')
-def signup(user: SchemaCreate, db: Session = Depends(get_db)):
+async def signup(user: SchemaCreate, db: Session = Depends(get_mysql)):
     query_user = ControllerUsers(db=db).read(username=user.username)
 
     if query_user:
@@ -29,7 +27,7 @@ def signup(user: SchemaCreate, db: Session = Depends(get_db)):
 
 
 @auth.post('/login')
-def login(user: SchemaCreate, db: Session = Depends(get_db)):
+async def login(user: SchemaCreate, db: Session = Depends(get_mysql)):
     query_user = ControllerUsers(db=db).read(username=user.username)
 
     if (query_user is None):
@@ -46,7 +44,7 @@ def login(user: SchemaCreate, db: Session = Depends(get_db)):
 
 
 @auth.get('/refresh_token')
-def refresh_token(credentials: HTTPAuthorizationCredentials = Security(security)):
+async def refresh_token(credentials: HTTPAuthorizationCredentials = Security(security)):
     refresh_token = credentials.credentials
     new_token = auth_handler.refresh_token(refresh_token)
 

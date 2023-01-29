@@ -12,7 +12,8 @@ def set_up():
     config = {
         "DEBUG": bool(environ.get("DEBUG", 1)),
         "ENVIRONMENT": environ.get("ENVIRONMENT", ""),
-        "DATABASE_URL": environ.get("DATABASE_URL", "sqlite:///./sql_app.db"),
+        "MYSQL_DATABASE_URL": environ.get("MYSQL_DATABASE_URL", "sqlite:///./sql_app.db"),
+        "NOSQL_DATABASE_URL": environ.get("NOSQL_DATABASE_URL"),
         "SECRET_KEY": environ.get("SECRET_KEY", "LinuxProfile"),
         "BASE_DIR": path.abspath(path.dirname(__file__))
     }
