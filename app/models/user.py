@@ -12,8 +12,9 @@ class Users(Base):
     __table_args__ = {'extend_existing': True}
 
     id = Column(String(32), primary_key=True, default=uuid4().hex, index=True)
-    username = Column(String(25), unique=True)
-    password = Column(String(65), unique=True)
+    email = Column(String(75), unique=True)
+    username = Column(String(45), unique=True)
+    password = Column(String(100), unique=True)
     status = Column(Boolean, default=True)
     created_date = Column(DateTime, default=datetime.utcnow)
 
