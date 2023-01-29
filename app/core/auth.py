@@ -11,7 +11,7 @@ class Auth:
 
     def __init__(self) -> None:
         config = set_up()
-        self.hasher = CryptContext(schemes=['bcrypt'])
+        self.hasher = CryptContext(schemes=["sha256_crypt", "des_crypt"])
         self.secret = config.get("SECRET_KEY")
 
     def encode_password(self, password):
