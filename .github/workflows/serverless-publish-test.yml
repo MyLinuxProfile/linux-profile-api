@@ -2,8 +2,7 @@ name: ⚙️ Serverless AWS Deploy-Test
 
 on:
   push:
-    branches:
-      - develop
+    branches: [ "develop" ]
 
 jobs:
   deploy:
