@@ -1,15 +1,15 @@
 import logging
 
 from sqlalchemy.orm import Session
-from app.models import Users
-from app.core.database import engine
+from app.models import Syncs, Users
+from app.core.database.mysql import engine
 
 
 class BaseController(object):
     """ Base View to create helpers common to all Webservices.
     """
 
-    def __init__(self, db: Session):
+    def __init__(self, db: Session = None):
         """Constructor
         """
         self.close_session = None
@@ -114,6 +114,13 @@ class BaseController(object):
 
 class ControllerUsers(BaseController):
 
-    def __init__(self, db: Session):
+    def __init__(self, db: Session = None):
         super().__init__(db)
         self.model_class = Users
+
+
+class ControllerSyncs(BaseController):
+
+    def __init__(self, db: Session = None):
+        super().__init__(db)
+        self.model_class = Syncs
