@@ -31,7 +31,7 @@ jobs:
         npm install -g serverless
         npm install
     - name: Serverless AWS Deploy
-      run:
+      run: |
         serverless config credentials -p aws -k ${{ secrets.AWS_ACCESS_KEY_ID }} -s ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         serverless deploy --region us-east-1 --stage dev
       env:
