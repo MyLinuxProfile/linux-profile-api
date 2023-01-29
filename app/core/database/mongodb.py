@@ -24,4 +24,4 @@ async def get_mongodb():
     config = set_up()
     client = motor.motor_asyncio.AsyncIOMotorClient(
         config.get("NOSQL_DATABASE_URL"))
-    return client.linux
+    return client.linux["profiles"]
