@@ -5,6 +5,8 @@ repo_url: https://github.com/MyLinuxProfile/linux-profile-api
 
 nav:
     - Home: index.md
+    - Serverless: nav/serverless.md
+    - Environment: nav/environment.md
     - Release Notes: nav/release-notes.md
 
 theme: 
