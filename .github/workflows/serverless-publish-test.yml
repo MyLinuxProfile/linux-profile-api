@@ -21,10 +21,10 @@ jobs:
     - run: npm ci
     - uses: serverless/github-action@v3.1
     - name: Serverless AWS Deploy
-      run: |
-        serverless config credentials -p aws -k ${{ secrets.AWS_ACCESS_KEY_ID }} -s ${{ secrets.AWS_SECRET_ACCESS_KEY }} -n linuxprofile
-        serverless deploy --aws-profile linuxprofile --region us-east-1 --stage prod
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         SLS_INTERACTIVE_SETUP_ENABLE: 1
+      run: |
+        serverless config credentials -p aws -k ${{ secrets.AWS_ACCESS_KEY_ID }} -s ${{ secrets.AWS_SECRET_ACCESS_KEY }} -n linuxprofile
+        serverless deploy --aws-profile linuxprofile --region us-east-1 --stage prod
