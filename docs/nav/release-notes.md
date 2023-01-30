@@ -3,6 +3,8 @@
 ## v1.0.1
 
 - [📦 PyPI - Build 1.0.1](https://github.com/MyLinuxProfile/linux-profile-api/releases/tag/v1.0.1)
+- [📌 ISSUE-16 - Integration with Sentry.io](https://github.com/MyLinuxProfile/linux-profile-api/issues/16)
+- [📌 ISSUE-14 - Adjust encryption type for authentication](https://github.com/MyLinuxProfile/linux-profile-api/issues/14)
 - [📌 ISSUE-10 - Adjust security settings](https://github.com/MyLinuxProfile/linux-profile-api/issues/10)
 - [📌 ISSUE-9 - Creating Profile Management and Sync](https://github.com/MyLinuxProfile/linux-profile-api/issues/9)
 - [📌 ISSUE-8 - MongoDB implementation base settings](https://github.com/MyLinuxProfile/linux-profile-api/issues/8)
