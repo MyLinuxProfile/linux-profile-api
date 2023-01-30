@@ -1,10 +1,25 @@
+import sentry_sdk
+from sentry_sdk.integrations.aws_lambda import AwsLambdaIntegration
+
 from fastapi import FastAPI, Depends
 from mangum import Mangum
 
 from app import __version__
 from app.api.auth import auth
 from app.api.v1.routers import v1
+
+from app.core.settings import set_up
 from app.core.security import authorization
+
+
+config = set_up()
+sentry_sdk.init(
+    dsn=config.get("SENTRY_DSN"),
+    integrations=[
+        AwsLambdaIntegration(timeout_warning=True),
+    ],
+    traces_sample_rate=1.0,
+)
 
 
 app = FastAPI(
