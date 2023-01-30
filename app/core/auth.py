@@ -19,18 +19,18 @@ class Auth:
 
     def verify_password(self, password, encoded_password):
         return self.hasher.verify(password, encoded_password)
-    
+
     def encode_token(self, username):
         payload = {
-            'exp' : datetime.utcnow() + timedelta(days=0, minutes=30),
-            'iat' : datetime.utcnow(),
-	    'scope': 'access_token',
-            'sub' : username
+            "exp": datetime.utcnow() + timedelta(days=0, minutes=30),
+            "iat": datetime.utcnow(),
+            "scope": "access_token",
+            "sub": username
         }
         return jwt.encode(
-            payload, 
+            payload,
             self.secret,
-            algorithm='HS256'
+            algorithm="HS256"
         )
 
     def decode_token(self, token):
@@ -43,19 +43,20 @@ class Auth:
             raise HTTPException(status_code=401, detail='Token expired')
         except jwt.InvalidTokenError:
             raise HTTPException(status_code=401, detail='Invalid token')
-	    
+
     def encode_refresh_token(self, username):
         payload = {
-            'exp' : datetime.utcnow() + timedelta(days=0, hours=10),
-            'iat' : datetime.utcnow(),
-	    'scope': 'refresh_token',
-            'sub' : username
+            "exp": datetime.utcnow() + timedelta(days=0, hours=10),
+            "iat": datetime.utcnow(),
+            "scope": "refresh_token",
+            "sub": username
         }
         return jwt.encode(
-            payload, 
+            payload,
             self.secret,
-            algorithm='HS256'
+            algorithm="HS256"
         )
+
     def refresh_token(self, refresh_token):
         try:
             payload = jwt.decode(refresh_token, self.secret, algorithms=['HS256'])

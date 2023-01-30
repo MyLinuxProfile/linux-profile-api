@@ -12,8 +12,8 @@ auth_handler = Auth()
 
 
 async def authorization(
-    mysql: Session = Depends(get_mysql),
-    credentials: HTTPAuthorizationCredentials = Security(security)):
+        mysql: Session = Depends(get_mysql),
+        credentials: HTTPAuthorizationCredentials = Security(security)):
     token = credentials.credentials
     if not auth_handler.decode_token(token):
         raise HTTPException(

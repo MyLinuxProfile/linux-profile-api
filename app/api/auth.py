@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends, Security, Request
+from fastapi import APIRouter, HTTPException, Depends, Security
 from fastapi.security import HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
 
@@ -38,7 +38,7 @@ async def login(user: SchemaCreate, db: Session = Depends(get_mysql)):
 
     if (not auth_handler.verify_password(user.password, query_user.password)):
         return HTTPException(status_code=401, detail='Invalid password')
-    
+
     access_token = auth_handler.encode_token(query_user.username)
     refresh_token = auth_handler.encode_refresh_token(query_user.username)
 

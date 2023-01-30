@@ -1,3 +1,4 @@
+import logging
 from os import environ, path
 
 
@@ -6,8 +7,8 @@ def set_up():
     try:
         from dotenv import load_dotenv
         load_dotenv()
-    except:
-        pass
+    except Exception as error:
+        logging.error(error)
 
     config = {
         "DEBUG": bool(environ.get("DEBUG", 1)),

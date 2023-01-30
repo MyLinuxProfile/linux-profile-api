@@ -14,9 +14,9 @@ router = APIRouter()
 @router.get("/profiles/{file}", response_model=SchemaBase, status_code=200)
 async def read(
         file: str,
-        mongodb = Depends(get_mongodb),
-        mysql = Depends(get_mysql),
-        user = Depends(authorization)):
+        mongodb=Depends(get_mongodb),
+        mysql=Depends(get_mysql),
+        user=Depends(authorization)):
 
     sync = ControllerSyncs(db=mysql).read(file=file, user_id=user.id)
     if sync:
@@ -29,9 +29,9 @@ async def read(
 @router.post("/profiles", response_model=SchemaBase, status_code=201)
 async def create(
         profile: Schema,
-        mongodb = Depends(get_mongodb),
-        mysql = Depends(get_mysql),
-        user = Depends(authorization)):
+        mongodb=Depends(get_mongodb),
+        mysql=Depends(get_mysql),
+        user=Depends(authorization)):
 
     profile = jsonable_encoder(profile)
     user_id = user.id
