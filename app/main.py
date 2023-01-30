@@ -14,7 +14,7 @@ from app.core.security import authorization
 
 config = set_up()
 sentry_sdk.init(
-    dsn=config.get("SENTRY_DNS"),
+    dsn=config.get("SENTRY_DSN"),
     integrations=[
         AwsLambdaIntegration(timeout_warning=True),
     ],
