@@ -17,7 +17,7 @@
 - 📌 ISSUE
 - 🪲 BUG
 - 📘 DOCS
-- 📦 PyPI
+- 📦 BUILD
 - ❤️️ TEST
 
 ## License

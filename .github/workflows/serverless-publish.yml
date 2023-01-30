@@ -1,28 +1,38 @@
 name: ⚙️ Serverless AWS Deploy
 
 on:
-  push:
-    branches:
-      - deploy
+  release:
+    types: [published]
 
 jobs:
   deploy:
     name: deploy
     runs-on: ubuntu-latest
+    environment: master
     strategy:
       matrix:
         node-version: [16.x]
+
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: ⚙️ Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.9"
+    - name: ⚙️ Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt --no-cache-dir
+        python3.9 -V
+    - name: ⚙️ Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - name: Serverless AWS Deploy
-      uses: serverless/github-action@v3.1
-      with:
-        args: deploy --region us-east-1 --stage prod
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - name: ⚙️ Install Node.js dependencies
+      run: |
+        npm install -g serverless
+        npm install
+    - name: 📦 Serverless AWS Deploy
+      run: |
+        serverless config credentials -p aws -k ${{ secrets.AWS_ACCESS_KEY_ID }} -s ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        serverless deploy --region us-east-1 --stage ${{ secrets.STAGE }}

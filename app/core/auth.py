@@ -4,13 +4,14 @@ from fastapi import HTTPException
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from app.core.settings import set_up
+from app.core.controller import ControllerUsers
 
 
 class Auth:
 
     def __init__(self) -> None:
         config = set_up()
-        self.hasher = CryptContext(schemes=['bcrypt'])
+        self.hasher = CryptContext(schemes=["sha256_crypt", "des_crypt"])
         self.secret = config.get("SECRET_KEY")
 
     def encode_password(self, password):
@@ -31,12 +32,12 @@ class Auth:
             self.secret,
             algorithm='HS256'
         )
-    
+
     def decode_token(self, token):
         try:
             payload = jwt.decode(token, self.secret, algorithms=['HS256'])
             if (payload['scope'] == 'access_token'):
-                return payload['sub']   
+                return ControllerUsers().read(username=payload['sub']).id
             raise HTTPException(status_code=401, detail='Scope for the token is invalid')
         except jwt.ExpiredSignatureError:
             raise HTTPException(status_code=401, detail='Token expired')

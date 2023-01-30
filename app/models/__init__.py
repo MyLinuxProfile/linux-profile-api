@@ -1,3 +1,7 @@
-__all__ = ["Users"]
+__all__ = [
+    "Syncs",
+    "Users"
+]
 
-from app.models.users import Users
+from app.models.sync import Syncs
+from app.models.user import Users

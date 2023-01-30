@@ -3,6 +3,7 @@ from pydantic import BaseModel
 
 
 class SchemaBase(BaseModel):
+    email: Optional[str] = None
     username: str
     password: str
 
@@ -11,7 +12,8 @@ class SchemaCreate(SchemaBase):
     pass
 
 
-class SchemaPut(SchemaBase):
+class SchemaUpdate(SchemaBase):
+    email: Optional[str] = None
     username: Optional[str] = None
     password: Optional[str] = None
 
