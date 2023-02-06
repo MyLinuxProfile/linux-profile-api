@@ -15,14 +15,15 @@ auth = APIRouter(tags=["Auth"])
 
 @auth.post('/signup')
 async def signup(user: SchemaCreate, db: Session = Depends(get_mysql)):
-    query_user = ControllerUsers(db=db).read(username=user.username)
+    query_user = ControllerUsers(db=db).read(email=user.email)
 
     if query_user:
         return 'Account already exists'
     else:
-        hashed_password = auth_handler.encode_password(user.password)
+        hashed_password = auth_handler.encode_password(user.password.get_secret_value())
         query_user = ControllerUsers(db=db).create(
             data={
+                "email": user.email,
                 "username": user.username,
                 "password": hashed_password})
 
@@ -31,16 +32,16 @@ async def signup(user: SchemaCreate, db: Session = Depends(get_mysql)):
 
 @auth.post('/login')
 async def login(user: SchemaCreate, db: Session = Depends(get_mysql)):
-    query_user = ControllerUsers(db=db).read(username=user.username)
+    query_user = ControllerUsers(db=db).read(email=user.email)
 
     if (query_user is None):
-        return HTTPException(status_code=401, detail='Invalid username')
+        return HTTPException(status_code=401, detail='Invalid email')
 
-    if (not auth_handler.verify_password(user.password, query_user.password)):
+    if (not auth_handler.verify_password(user.password.get_secret_value(), query_user.password)):
         return HTTPException(status_code=401, detail='Invalid password')
 
-    access_token = auth_handler.encode_token(query_user.username)
-    refresh_token = auth_handler.encode_refresh_token(query_user.username)
+    access_token = auth_handler.encode_token(query_user.email)
+    refresh_token = auth_handler.encode_refresh_token(query_user.email)
 
     return {"access_token": access_token, "refresh_token": refresh_token}
 
