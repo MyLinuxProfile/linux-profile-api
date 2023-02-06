@@ -1,11 +1,11 @@
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr, SecretStr
 
 
 class SchemaBase(BaseModel):
-    email: Optional[str] = None
-    username: str
-    password: str
+    email: EmailStr
+    username: Optional[str] = None
+    password: SecretStr
 
 
 class SchemaCreate(SchemaBase):
@@ -13,9 +13,9 @@ class SchemaCreate(SchemaBase):
 
 
 class SchemaUpdate(SchemaBase):
-    email: Optional[str] = None
+    email: EmailStr
     username: Optional[str] = None
-    password: Optional[str] = None
+    password: SecretStr
 
 
 class Schema(SchemaBase):
