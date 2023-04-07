@@ -1,13 +1,14 @@
-# linux-profile-api
+# Welcome to LinuxProfile API
 
-<img src="https://github.com/MyLinuxProfile/linux-profile/blob/master/docs/linuxp.png?raw=true">
+<img src="https://github.com/linux-profile/linux-profile/blob/master/docs/linuxp.png?raw=true">
 
-![GitHub Org's stars](https://img.shields.io/github/stars/MyLinuxProfile?label=LinuxProfile&style=flat-square)
+![GitHub Org's stars](https://img.shields.io/github/stars/linux-profile?label=LinuxProfile&style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/linux-profile/linux-profile-api?style=flat-square)
 
 ---
 
 - **Documentation**: [https://docs.linuxprofile.com](https://docs.linuxprofile.com)
-- **Source Code**: [https://github.com/MyLinuxProfile/linux-profile-api](https://github.com/MyLinuxProfile/linux-profile-api)
+- **Source Code**: [https://github.com/linux-profile/linux-profile-api](https://github.com/linux-profile/linux-profile-api)
 
 ---
 
